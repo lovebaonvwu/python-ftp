@@ -39,6 +39,8 @@ def upload():
     ftpClient.upload(data['remoteDir'],
                      data['remoteFileName'], data['remoteFileData'])
 
+    ftpClient.close()
+
     return jsonify({'code': 0, 'msg': 'ok'})
 
 
@@ -49,6 +51,8 @@ def download():
     ftpClient = FTPClient()
     remoteFileData = ftpClient.download(
         data['remoteDir'], data['remoteFileName'])
+
+    ftpClient.close()
 
     return jsonify({'code': 0, 'msg': 'ok', 'remoteFileData': remoteFileData})
 
