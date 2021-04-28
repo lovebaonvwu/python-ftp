@@ -4,6 +4,14 @@ import base64
 
 
 class FTPClient:
+    '''FTP Client
+
+    constructor args:
+        host: ftp server host, default 127.0.0.1
+        user: ftp user name, default user
+        password: ftp user password, default 12345
+    '''
+
     def __init__(self, host='127.0.0.1', user='user', password='12345'):
         self.user = user
         self.password = password
