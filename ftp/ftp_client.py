@@ -15,6 +15,7 @@ class FTPClient:
     def __init__(self, host='127.0.0.1', user='user', password='12345'):
         self.user = user
         self.password = password
+        self.downloadFileMaxBufferSize = 1024 * 10000
 
         self.ftp = FTP(host)
 
@@ -31,7 +32,7 @@ class FTPClient:
 
         binaryStringIO = StringIO.StringIO()
         self.ftp.retrbinary('RETR ' + remoteFileName,
-                            binaryStringIO.write, 1024 * 10)
+                            binaryStringIO.write, self.downloadFileMaxBufferSize)
 
         return base64.b64encode(binaryStringIO.getvalue())
 
